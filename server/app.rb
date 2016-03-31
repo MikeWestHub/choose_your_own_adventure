@@ -26,3 +26,15 @@ end
 get "/backend/steps" do
   Step.all.to_json
 end
+
+post "/login" do
+  token = SecureRandom.hex
+  session = Adventure::Session.create(token: token)
+  session.to_json
+end
+
+post "/storyname" do
+  payload = JSON.parse(request.body.read)
+  story = Adventure::Story.create(payload)
+  story.to_json
+end
