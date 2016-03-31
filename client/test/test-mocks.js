@@ -45,7 +45,7 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
 
     // Create a new step in a story
     $.mockjax({
-      url: '/step-me-up',
+      url: '/step',
       type: 'POST',
       proxy: 'test/mocks/new-step.json'
     });
