@@ -34,6 +34,23 @@
       });
     };
 
+    // Send the body of the new step and its options to the server
+    adv.createStep = function createStep() {
+      $.ajax({
+        type: 'POST',
+        url: '/step',
+        contentType: 'application/json',
+        headers: {
+            authorization: token
+        },
+        data: JSON.stringify({body: adv.stepText, optA: adv.optionAText, optB: adv.optionBText}),
+        success: function getToken(data) {
+          console.log(data);
+          // userAndToken.token = data.token;
+        },
+      });
+    };
+
 
 
 })(window.adv);
