@@ -19,42 +19,42 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
     $.mockjax({
       url: '/login', // What should this be? Negotiate it!
       type: 'POST',             // This is the HTTP method for this action
-      proxy: 'mocks/login.json'
+      proxy: 'test/mocks/login.json'
     });
 
     // Create a new story
     $.mockjax({
-      url: '/', // What should this be? Negotiate it!
+      url: '/storyname', // What should this be? Negotiate it!
       type: 'POST',             // This is the HTTP method for this action
-      proxy: 'mocks/new-story.json'
+      proxy: 'test/mocks/new-story.json'
     });
 
     // Retrieve a story
     $.mockjax({
       url: '/where/is/it',
       type: 'GET',
-      proxy: 'mocks/story.json'
+      proxy: 'test/mocks/story.json'
     });
 
     // Retrieve all steps for a story
     $.mockjax({
       url: '/steps-in-a-story',
       type: 'GET',
-      proxy: 'mocks/story-steps.json'
+      proxy: 'test/mocks/story-steps.json'
     });
 
     // Create a new step in a story
     $.mockjax({
       url: '/step-me-up',
       type: 'POST',
-      proxy: 'mocks/new-step.json'
+      proxy: 'test/mocks/new-step.json'
     });
 
     // Update a step in a story
     $.mockjax({
       url: '/step-update',
       type: 'PATCH',
-      proxy: 'mocks/step-update.json'
+      proxy: 'test/mocks/step-update.json'
     });
 
 }
