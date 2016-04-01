@@ -2,15 +2,41 @@
   'use strict';
     adv = adv || (window.adv = {});
 
+    /************************************************
+     *********	FUNCTIONS HANDLING LOGIN  ***********
+     ************************************************/
+
     // Handler for login button to generate token.
     $('#login').on('submit', function( event ) {
         event.preventDefault();
         adv.tokenGen();
     });
 
+    // Displays the Nav after login.
+    adv.displayNav = function displayNav(){
+      $('#login').css('display', 'none');
+      $('nav').css('display', 'block');
+    };
 
     /************************************************
-     *	FUNCTIONS HANDLING THE STORY NAME FORM  *****
+     *********	FUNCTIONS HANDLING NAV  *************
+     ************************************************/
+
+    // Displays available stories to edit after clicking on List Stories link.
+    $('.list-stories').on('click', function() {
+      adv.listStories();
+      // console.log(42);
+    });
+
+    // Displays the Create Story form after clicking on Create Story link.
+    $('.create-story').on('click', function() {
+      $('#login').css('display', 'none');
+      $('#create-story').css('display', 'block');
+    });
+
+
+    /************************************************
+     ***	FUNCTIONS HANDLING THE STORY NAME FORM  ***
      ************************************************/
 
     // Returns the value of the Story Name field.
@@ -25,6 +51,12 @@
         // console.log(42);
     });
 
+    // Displays the Editing Story form after a Story name has been picked.
+    adv.displayEditStory = function displayEditStory(){
+      $('#create-story').css('display', 'none');
+      $('#edit-story').css('display', 'block');
+      $('.story-name').text($('#new-story-name').val());
+    };
 
     /************************************************
      *	FUNCTIONS HANDLING THE EDITING STORY FORM
