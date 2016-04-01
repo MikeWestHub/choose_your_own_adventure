@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "steps", force: :cascade do |t|
+    t.text     "body"
+    t.text     "opt_a"
+    t.text     "opt_b"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
