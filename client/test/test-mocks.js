@@ -24,14 +24,14 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
 
     // Create a new story
     $.mockjax({
-      url: '/storyname', // What should this be? Negotiate it!
+      url: '/story', // What should this be? Negotiate it!
       type: 'POST',             // This is the HTTP method for this action
       proxy: 'test/mocks/new-story.json'
     });
 
     // Retrieve a story
     $.mockjax({
-      url: '/list',
+      url: '/stories',
       type: 'GET',
       proxy: 'test/mocks/story.json'
     });
@@ -52,7 +52,7 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
 
     // Update a step in a story
     $.mockjax({
-      url: '/step-update',
+      url: '/update',
       type: 'PATCH',
       proxy: 'test/mocks/step-update.json'
     });

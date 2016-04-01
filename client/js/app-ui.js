@@ -58,8 +58,9 @@
       $('.story-name').text($('#new-story-name').val());
     };
 
+
     /************************************************
-     *	FUNCTIONS HANDLING THE EDITING STORY FORM
+     **	FUNCTIONS HANDLING THE EDITING STORY FORM ***
      ************************************************/
 
     // Returns the value of the Step Text field.
@@ -84,6 +85,48 @@
         // console.log(42);
     });
 
+
+    /************************************************
+     ****	FUNCTIONS HANDLING EDITING THE STEPS  *****
+     ************************************************/
+     adv.appendStep = function appendStep() {
+       $('#edit-steps')
+          .append( $('<li>')
+            .append( $('<h4>').text('Step ID:')
+              .append( $('<span>').attr( {class: 'step-id'} ) )
+            )
+            .append( $('<form>').attr('class', 'edit-story-step')
+              .append( $('<input>').attr( {type: 'hidden', class: 'story-id', value: ''} ) )
+              .append( $('<fieldset>')
+                .append( $('<h4>').text('Step Text') )
+                .append( $('<textarea>').attr( {class: 'new-step-text'} ) )
+              )
+              .append( $('<fieldset>')
+                .append( $('<div>')
+                  .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Text') )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a'} ) )
+                )
+                .append( $('<div>')
+                  .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Next Step') )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a-next'} ) )
+                )
+              )
+              .append( $('<fieldset>')
+                .append( $('<div>')
+                  .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Text') )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b'} ) )
+                )
+                .append( $('<div>')
+                  .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Next Step') )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b-next'} ) )
+                )
+              )
+              .append( $('<fieldset>')
+                .append( $('<input>').attr( {type: 'submit', value: 'Update'} ) )
+              )
+            )
+          );
+     };
 
 
 
