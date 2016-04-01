@@ -3,6 +3,7 @@ class StepMigration < ActiveRecord::Migration
   def up
     drop_table :steps if table_exists?(:steps)
     create_table :steps do |t|
+      t.integer :story_id
       t.text :body
       t.text :opt_a
       t.text :opt_b

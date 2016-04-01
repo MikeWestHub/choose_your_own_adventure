@@ -23,9 +23,12 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "steps", force: :cascade do |t|
+    t.integer  "story_id"
     t.text     "body"
     t.text     "opt_a"
     t.text     "opt_b"
+    t.integer  "a_assignment"
+    t.integer  "b_assignment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

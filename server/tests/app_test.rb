@@ -24,7 +24,7 @@ class AppTest < Minitest::Test
 
   def test_can_receive_string_for_story_name
     hash = { name: "Excalibur"}
-    response = post("/storyname", hash.to_json, { "CONTENT_TYPE" => "application/json"})
+    response = post("/story", hash.to_json, { "CONTENT_TYPE" => "application/json"})
     story_name = JSON.parse(response.body)
     assert_equal "Excalibur", story_name["name"]
   end
@@ -50,4 +50,18 @@ class AppTest < Minitest::Test
     options = JSON.parse(response.body)
     assert_equal "Go left", options["opt_a"]
   end
+
+  def test_can_get_all_steps_for_story
+    story = Adventure::Story.create(name: "Excalibur")
+    Adventure::Step.create({ body: "Begin!!", story_id: story.id, opt_a: "Go left", opt_b: "Backflip!", a_assignment: nil, b_assignment: nil })
+    Adventure::Step.create({ body: "Left!!", story_id: story.id, opt_a: "Run", opt_b: "Jump!", a_assignment: nil, b_assignment: nil })
+    response = get("/steps/#{story.id}")
+    steps = JSON.parse(response.body)
+    assert_equal "Begin!!",  steps.first["body"]
+    assert_equal 2, steps.length
+  end
+  # def test_can_update_steps_and_options
+  #   payload = { body: "Begin!!", opt_a: "Go left", opt_b: "Backflip!", a_assignment: nil, b_assignment: nil }
+  #   step = Adventure::Step.create(payload)
+  # end
 end

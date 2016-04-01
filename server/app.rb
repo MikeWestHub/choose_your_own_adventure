@@ -14,9 +14,9 @@ before do
   content_type "application/json"
 end
 
-get "/backend/steps" do
-  Step.all.to_json
-end
+# get "/backend/steps" do
+#   Step.all.to_json
+# end
 
 post "/login" do
   token = SecureRandom.hex
@@ -24,7 +24,7 @@ post "/login" do
   session.to_json
 end
 
-post "/storyname" do
+post "/story" do
   payload = JSON.parse(request.body.read)
   story = Adventure::Story.create(payload)
   story.to_json
@@ -41,4 +41,14 @@ post "/step/:id" do
   step = Adventure::Step.find(params["id"])
   step.update(payload)
   step.to_json
+end
+
+get "/stories" do
+  Adventure::Story.all.to_json
+end
+
+get "/steps/:id" do
+  story = Adventure::Story.find(params["id"])
+  steps = Adventure::Step.where(story_id: story.id)
+  steps.to_json
 end
