@@ -35,3 +35,10 @@ post "/step" do
   step = Adventure::Step.create(payload)
   step.to_json
 end
+
+post "/step/:id" do
+  payload = JSON.parse(request.body.read)
+  step = Adventure::Step.find(params["id"])
+  step.update(payload)
+  step.to_json
+end

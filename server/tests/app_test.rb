@@ -35,4 +35,19 @@ class AppTest < Minitest::Test
     step = JSON.parse(response.body)
     assert_equal "This is a step", step["body"]
   end
+
+  def test_can_receive_options
+    hash = { body: "Begin!!", opt_a: "Go left", opt_b: "Backflip!" }
+    response = post("/step", hash.to_json, { "CONTENT_TYPE" => "applicaiton/json" })
+    step = JSON.parse(response.body)
+    assert_equal "Backflip!", step["opt_b"]
+  end
+
+  def test_can_post_step_based_on_id
+    payload = { body: "Begin!!", opt_a: "Go left", opt_b: "Backflip!" }
+    step = Adventure::Step.create(payload)
+    response = post("/step/#{step.id}", step.to_json, { "CONTENT_TYPE" => "applicaiton/json" })
+    options = JSON.parse(response.body)
+    assert_equal "Go left", options["opt_a"]
+  end
 end
