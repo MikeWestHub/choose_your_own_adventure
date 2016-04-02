@@ -1,6 +1,6 @@
 [
    {
-      "id":1,
+      "id": 1,
       "body":"The first step",
       "opt_a": "Path 1",
       "opt_b": "Path 2",
@@ -8,7 +8,7 @@
       "b_assignment": 3
    },
    {
-      "id":2,
+      "id": 2,
       "body":"The second step",
       "opt_a": "Path 6",
       "opt_b": "Path 7",

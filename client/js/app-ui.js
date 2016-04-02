@@ -106,7 +106,7 @@
      ************************************************/
 
      // Appends the HTML Elements for the most recently created step.
-     adv.appendStep = function appendStep() {
+     adv.appendStep = function appendStep(stepText, optionAText, optionBText, optionAPath, optionBPath) {
        $('#edit-steps')
           .append( $('<li>')
             .append( $('<h4>').text('Step ID:')
@@ -116,26 +116,26 @@
               .append( $('<input>').attr( {type: 'hidden', class: 'story-id', value: ''} ) )
               .append( $('<fieldset>')
                 .append( $('<h4>').text('Step Text') )
-                .append( $('<textarea>').attr( {class: 'new-step-text'} ) )
+                .append( $('<textarea>').attr( {class: 'new-step-text'} ).val(stepText) )
               )
               .append( $('<fieldset>')
                 .append( $('<div>')
                   .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Text') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a'} ) )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a'} ).val(optionAText) )
                 )
                 .append( $('<div>')
                   .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Next Step') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a-next'} ) )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a-next'} ).val(optionAPath) )
                 )
               )
               .append( $('<fieldset>')
                 .append( $('<div>')
                   .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Text') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b'} ) )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b'} ).val(optionBText) )
                 )
                 .append( $('<div>')
                   .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Next Step') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b-next'} ) )
+                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b-next'} ).val(optionBPath) )
                 )
               )
               .append( $('<fieldset>')
@@ -146,12 +146,12 @@
      };
 
      // Sets the values of the inputs to edit an existing step
-     adv.appendStepText = function appendStepText(/* newStepText, optionAText, optionBText */) {
-      $('.step-id').text(adv.storyStep.id);
-      $('.new-step-text').val(adv.storyStep.body);
-      $('.new-step-option-a').val(adv.storyStep.opt_a);
-      $('.new-step-option-b').val(adv.storyStep.opt_b);
-     };
+    //  adv.appendStepText = function appendStepText(/* newStepText, optionAText, optionBText */) {
+    //   $('.step-id').text(adv.storyStep.id);
+    //   // $('.new-step-text').val(adv.storyStep.body);
+    //   // $('.new-step-option-a').val(adv.storyStep.opt_a);
+    //   // $('.new-step-option-b').val(adv.storyStep.opt_b);
+    //  };
 
      // Sends updated step info to the server
      $('#edit-steps').on('submit', '.edit-story-step', function( event ) {
