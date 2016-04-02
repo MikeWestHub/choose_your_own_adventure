@@ -18,6 +18,7 @@
       $('nav').css('display', 'block');
     };
 
+
     /************************************************
      *********	FUNCTIONS HANDLING NAV  *************
      ************************************************/
@@ -25,7 +26,21 @@
     // Displays available stories to edit after clicking on List Stories link.
     $('.list-stories').on('click', function() {
       adv.listStories();
-      // console.log(42);
+      console.log("list me stories please");
+    });
+
+    // Appends HTML for available stories to edit.
+    adv.appendStoryList = function appendStoryList() {
+      $('#display-stories')
+        .append( $('<li>').text(adv.storyAndID.name)
+          .append( $('<a>').attr( {href: '#', class: 'edit-story'} ).text('Edit') )
+        );
+    };
+
+    // Displays steps of a story when clicking on that story's edit link.
+    $('#display-stories').on('click', '.edit-story', function() {
+      adv.getSteps();
+      // console.log("list me stories please");
     });
 
     // Displays the Create Story form after clicking on Create Story link.
@@ -79,7 +94,7 @@
     };
 
     // Handler for submit on the Editing Story fields.
-    $('#edit-story').on('submit', function( event ) {
+    $('.create-story-step').on('submit', function( event ) {
         event.preventDefault();
         adv.createStep();
         // console.log(42);
@@ -89,6 +104,8 @@
     /************************************************
      ****	FUNCTIONS HANDLING EDITING THE STEPS  *****
      ************************************************/
+
+     // Appends the HTML Elements for the most recently created step.
      adv.appendStep = function appendStep() {
        $('#edit-steps')
           .append( $('<li>')
@@ -127,6 +144,27 @@
             )
           );
      };
+
+     // Sets the values of the inputs to edit an existing step
+     adv.appendStepText = function appendStepText(/* newStepText, optionAText, optionBText */) {
+      $('.step-id').text(adv.storyStep.id);
+      $('.new-step-text').val(adv.storyStep.body);
+      $('.new-step-option-a').val(adv.storyStep.opt_a);
+      $('.new-step-option-b').val(adv.storyStep.opt_b);
+     };
+
+     // Sends updated step info to the server
+     $('#edit-steps').on('submit', '.edit-story-step', function( event ) {
+         event.preventDefault();
+         if ( Number($('.new-step-option-a-next').val()) && Number($('.new-step-option-b-next').val()) ) {
+           adv.editStep();
+           console.log('Yay! Numbers!');
+         } else {
+           console.log('Boo! No Numbers!');
+         }
+
+
+     });
 
 
 

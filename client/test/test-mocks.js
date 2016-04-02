@@ -29,7 +29,7 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
       proxy: 'test/mocks/new-story.json'
     });
 
-    // Retrieve a story
+    // Retrieve all stories
     $.mockjax({
       url: '/stories',
       type: 'GET',
