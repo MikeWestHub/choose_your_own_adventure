@@ -75,12 +75,19 @@
             adv.storySteps.opt_a = element.opt_a;
             adv.storySteps.opt_b = element.opt_b;
             adv.storySteps.a_assignment = element.a_assignment;
-            // adv.storySteps.b_assignment = element.b_assignment;
+            adv.storySteps.b_assignment = element.b_assignment;
             console.log(adv.storySteps);
 
 
-            adv.appendStep();
-            $('.step-id').text(element.id);
+            adv.appendStep(
+              adv.storySteps.id,
+              adv.storySteps.body,
+              adv.storySteps.opt_a,
+              adv.storySteps.opt_b,
+              adv.storySteps.a_assignment,
+              adv.storySteps.b_assignment
+            );
+            // $('.step-id').text(element.id);
 
           });
           console.log('success');
@@ -139,10 +146,12 @@
             console.log(adv.storyStep);
             // console.log(element.id);
 
-          adv.appendStep(adv.storyStep.body, adv.storyStep.opt_a, adv.storyStep.opt_b);
-          // console.log(data);
-          // adv.appendStepText(/*$('.new-step-text').val(), $('.new-step-option-a').text(), $('.new-step-option-b').text()*/);
-          // userAndToken.token = data.token;
+          adv.appendStep(
+            adv.storyStep.id,
+            adv.storyStep.body,
+            adv.storyStep.opt_a,
+            adv.storyStep.opt_b
+          );
         },
         error: function handleErrors(xhr) {
           console.log( xhr );

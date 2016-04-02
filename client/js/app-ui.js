@@ -106,11 +106,11 @@
      ************************************************/
 
      // Appends the HTML Elements for the most recently created step.
-     adv.appendStep = function appendStep(stepText, optionAText, optionBText, optionAPath, optionBPath) {
+     adv.appendStep = function appendStep(stepID, stepText, optionAText, optionBText, optionAPath, optionBPath) {
        $('#edit-steps')
           .append( $('<li>')
             .append( $('<h4>').text('Step ID:')
-              .append( $('<span>').attr( {class: 'step-id'} ) )
+              .append( $('<span>').attr( {class: 'step-id'} ).text(stepID) )
             )
             .append( $('<form>').attr('class', 'edit-story-step')
               .append( $('<input>').attr( {type: 'hidden', class: 'story-id', value: ''} ) )
