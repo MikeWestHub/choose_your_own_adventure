@@ -76,4 +76,10 @@ class AppTest < Minitest::Test
     new_record = JSON.parse(response.body)
     assert_equal "The Sword in the Stone", new_record["name"]
   end
+
+  def test_that_a_story_can_be_deleted
+    story = Adventure::Story.create(name: "Excalibur")
+    delete "/story_del/#{story.id}"
+    assert_equal false, Adventure::Story.exists?(story.id)
+  end
 end

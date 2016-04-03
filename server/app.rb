@@ -68,3 +68,8 @@ patch "/story!/:id" do
   story.update(payload)
   [200, story.to_json]
 end
+
+delete "/story_del/:id" do
+  story = Adventure::Story.find(params["id"])
+  story.destroy!
+end
