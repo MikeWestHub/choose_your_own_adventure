@@ -82,4 +82,12 @@ class AppTest < Minitest::Test
     delete "/story_del/#{story.id}"
     assert_equal false, Adventure::Story.exists?(story.id)
   end
+
+  def test_that_a_step_can_be_deleted
+    story = Adventure::Story.create(name: "Excalibur")
+    step_1 = Adventure::Step.create({ body: "Begin!!", story_id: story.id, opt_a: "Go left", opt_b: "Backflip!", a_assignment: nil, b_assignment: nil })
+    step_2 = Adventure::Step.create({ body: "Left!!", story_id: story.id, opt_a: "Run", opt_b: "Jump!", a_assignment: nil, b_assignment: nil })
+    delete "/step_del/#{step_1.id}"
+    assert_equal false, Adventure::Step.exists?(step_1.id)
+  end
 end
