@@ -52,7 +52,7 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
 
     // Update a step in a story
     $.mockjax({
-      url: '/update',
+      url: '/update',  //  '/step!/id#'
       type: 'PATCH',
       proxy: 'test/mocks/step-update.json'
     });

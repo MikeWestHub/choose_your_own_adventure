@@ -13,20 +13,23 @@
 
 
             <section id='login'>
-                <p>Please log in before creating your story.</p>
+                <p id="title">ADVENTURE MAKER 1987</p>
                 <form>
-                    <input id='login-btn' type='submit' value='Begin'>
+                    <input id='login-btn' type='submit' value='Start'>
                 </form>
+                <p id="login-error">Please try again shortly.</p>
             </section>
 
             <header>Choose Your Own Adventure!</header>
 
             <nav>
                 <ul>
-                    <li><a class='list-stories' href='#'>List Stories</a></li>
-                    <li><a class='create-story' href='#'>Create Story</a></li>
+                    <li><button class='create-story' href='#'>Create Story</button></li>
+                    <li><button class='list-stories' href='#'>List Stories</button></li>
                 </ul>
             </nav>
+
+            <div class='clearfix'></div>
 
             <section id='story-list'>
                 <ul id='display-stories'>
@@ -39,7 +42,7 @@
             </section>
 
             <section id='create-story'>
-                <h2>Create a New Story!</h2>
+                <h2>Give your Adventure a name!</h2>
                 <form>
                     <label for='new-story-name'>Story Name</label>
                     <input type='text' id='new-story-name'>
@@ -73,7 +76,7 @@
                     </fieldset>
                 </form>
 
-                <h3>Current Steps</h3>
+                <!-- <h3>Current Steps</h3> -->
                 <ul id="edit-steps">
                     <!-- example step
                     <li>
