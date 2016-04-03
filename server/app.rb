@@ -59,5 +59,12 @@ patch "/step!/:id" do
   payload = JSON.parse(request.body.read)
   step = Adventure::Step.find(params["id"])
   step.update(payload)
-  step.to_json
+  [200, step.to_json]
+end
+
+patch "/story!/:id" do
+  payload = JSON.parse(request.body.read)
+  story = Adventure::Story.find(params["id"])
+  story.update(payload)
+  [200, story.to_json]
 end

@@ -68,4 +68,12 @@ class AppTest < Minitest::Test
     new_record = JSON.parse(response.body)
     assert_equal 4, new_record["b_assignment"]
   end
+
+  def test_that_a_story_can_be_updated
+    story = Adventure::Story.create(name: "Excalibur")
+    new_name = {name: "The Sword in the Stone"}
+    response = patch("/story!/#{story.id}", new_name.to_json, { "CONTENT_TYPE" => "applicaiton/json" })
+    new_record = JSON.parse(response.body)
+    assert_equal "The Sword in the Stone", new_record["name"]
+  end
 end
