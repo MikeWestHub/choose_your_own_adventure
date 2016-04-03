@@ -21,34 +21,36 @@ end
 post "/login" do
   token = SecureRandom.hex
   session = Adventure::Session.create(token: token)
-  session.to_json
+  [200, session.to_json]
 end
 
 post "/story" do
   payload = JSON.parse(request.body.read)
   story = Adventure::Story.create(payload)
-  story.to_json
+  [200, story.to_json]
+
 end
 
 post "/step" do
   payload = JSON.parse(request.body.read)
   step = Adventure::Step.create(payload)
-  step.to_json
+  [200, step.to_json]
 end
 
 post "/step/:id" do
   payload = JSON.parse(request.body.read)
   step = Adventure::Step.find(params["id"])
   step.update(payload)
-  step.to_json
+  [200, step.to_json]
 end
 
 get "/stories" do
-  Adventure::Story.all.to_json
+  stories = Adventure::Story.all
+  [200, stories.to_json]
 end
 
 get "/steps/:id" do
   story = Adventure::Story.find(params["id"])
   steps = Adventure::Step.where(story_id: story.id)
-  steps.to_json
+  [200, steps.to_json]
 end

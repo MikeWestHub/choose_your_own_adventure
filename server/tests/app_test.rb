@@ -36,7 +36,7 @@ class AppTest < Minitest::Test
     assert_equal "This is a step", step["body"]
   end
 
-  def test_can_receive_options
+  def test_create_step_can_receive_options
     hash = { body: "Begin!!", opt_a: "Go left", opt_b: "Backflip!" }
     response = post("/step", hash.to_json, { "CONTENT_TYPE" => "applicaiton/json" })
     step = JSON.parse(response.body)
@@ -55,7 +55,7 @@ class AppTest < Minitest::Test
     story = Adventure::Story.create(name: "Excalibur")
     Adventure::Step.create({ body: "Begin!!", story_id: story.id, opt_a: "Go left", opt_b: "Backflip!", a_assignment: nil, b_assignment: nil })
     Adventure::Step.create({ body: "Left!!", story_id: story.id, opt_a: "Run", opt_b: "Jump!", a_assignment: nil, b_assignment: nil })
-    response = get("/steps/#{story.id}")
+    response = get("steps/#{story.id}")
     steps = JSON.parse(response.body)
     assert_equal "Begin!!",  steps.first["body"]
     assert_equal 2, steps.length
