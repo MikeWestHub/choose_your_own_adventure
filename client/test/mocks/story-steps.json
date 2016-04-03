@@ -1,0 +1,18 @@
+[
+   {
+      "id": 1,
+      "body":"The first step",
+      "opt_a": "Path 1",
+      "opt_b": "Path 2",
+      "a_assignment": 2,
+      "b_assignment": 3
+   },
+   {
+      "id": 2,
+      "body":"The second step",
+      "opt_a": "Path 6",
+      "opt_b": "Path 7",
+      "a_assignment": 4,
+      "b_assignment": 5
+   }
+]

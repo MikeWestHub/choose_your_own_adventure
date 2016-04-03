@@ -29,7 +29,7 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
       proxy: 'test/mocks/new-story.json'
     });
 
-    // Retrieve a story
+    // Retrieve all stories
     $.mockjax({
       url: '/stories',
       type: 'GET',
@@ -55,6 +55,13 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
       url: '/update',
       type: 'PATCH',
       proxy: 'test/mocks/step-update.json'
+    });
+
+    // Delete a step in a story
+    $.mockjax({
+      url: '/delete',
+      type: 'DELETE',
+      proxy: 'test/mocks/delete-step.json'
     });
 
 }
