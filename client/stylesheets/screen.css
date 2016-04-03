@@ -67,6 +67,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
+/* line 2, ../sass/_main.scss */
+nav, #create-story, #edit-story, #story-list {
+  display: none;
+}
+
 /* line 6, ../sass/_main.scss */
 header {
   font-family: 'Press Start 2P', cursive;

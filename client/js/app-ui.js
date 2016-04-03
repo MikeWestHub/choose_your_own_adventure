@@ -139,7 +139,8 @@
                 )
               )
               .append( $('<fieldset>')
-                .append( $('<input>').attr( {type: 'submit', value: 'Update'} ) )
+                .append( $('<input>').attr( {type: 'submit', value: 'Update Step'} ) )
+                .append( $('<input>').attr( {type: 'button', value: 'Delete Step', class: 'delete-btn'} ) )
               )
             )
           );
@@ -156,16 +157,47 @@
      // Sends updated step info to the server
      $('#edit-steps').on('submit', '.edit-story-step', function( event ) {
          event.preventDefault();
-         if ( Number($('.new-step-option-a-next').val()) && Number($('.new-step-option-b-next').val()) ) {
+         if ( Number( $('.new-step-option-a-next').val() ) && Number( $('.new-step-option-b-next').val() ) ) {
            adv.editStep();
            console.log('Yay! Numbers!');
          } else {
            console.log('Boo! No Numbers!');
          }
-
-
      });
 
+     var token = {token: 2248433};
+     // Deleting a Step
+     $('#edit-steps').on('click', '.delete-btn', function( event ) {
+         event.preventDefault();
+        //  adv.deleteStep( $(this).closest('li').find('.step-id').text() );
+        $.ajax({
+          type: 'DELETE',
+          url: '/delete',
+          contentType: 'application/json',
+          dataType: 'json',
+          headers: {
+              authorization: token
+          },
+          data: JSON.stringify( {id: $(this).closest('li').find('.step-id').text()} ),
+          context: this,
+          success: function removeStep(data) {
+            console.log(data);
+            // console.log(stepID);
+            console.log(this);
+            $(this).closest('li').remove();
 
+          },
+          error: function handleErrors(xhr) {
+            console.log( xhr );
+            // THIS NEEDS TO DO SOMETHING!
+          },
+        });
+        //  $(this).closest('li').remove();  // This should only happen if request is successful
+     });
+
+     // Removes the HTML elements for a step
+     adv.removeStep = function removeStep() {
+       $('li');
+     };
 
 })(window.adv);

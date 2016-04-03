@@ -57,4 +57,11 @@ if (window.location.search.match(/[^a-z]debug([^a-z]|$)/i)) {
       proxy: 'test/mocks/step-update.json'
     });
 
+    // Delete a step in a story
+    $.mockjax({
+      url: '/delete',
+      type: 'DELETE',
+      proxy: 'test/mocks/delete-step.json'
+    });
+
 }

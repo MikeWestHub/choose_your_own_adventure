@@ -2,7 +2,7 @@
   'use strict';
     adv = adv || (window.adv = {});
 
-    var token = {};
+    adv.token = {};
 
     // Call to server to generate a token
     adv.tokenGen = function tokenGen() {
@@ -13,9 +13,9 @@
         dataType: 'json',
         success: function getToken(data) {
           console.log(data);
-          token.token = data.token;
+          adv.token.token = data.token;
           adv.displayNav();
-          console.log(token);
+          console.log(adv.token);
           // adv.displayCreateStory();
         },
         error: function handleErrors(xhr) {
@@ -34,7 +34,7 @@
         url: '/stories',
         dataType: 'json',
         headers: {
-            authorization: token
+            authorization: adv.token
         },
         success: function getStories(data) {
           data.forEach(function(element) {
@@ -66,9 +66,9 @@
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: token
+            authorization: adv.token
         },
-        success: function getStories(data) {
+        success: function grabSteps(data) {
           data.forEach(function(element) {
             adv.storySteps.id = element.id;
             adv.storySteps.body = element.body;
@@ -78,7 +78,6 @@
             adv.storySteps.b_assignment = element.b_assignment;
             console.log(adv.storySteps);
 
-
             adv.appendStep(
               adv.storySteps.id,
               adv.storySteps.body,
@@ -87,7 +86,6 @@
               adv.storySteps.a_assignment,
               adv.storySteps.b_assignment
             );
-            // $('.step-id').text(element.id);
 
           });
           console.log('success');
@@ -110,7 +108,7 @@
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: token
+            authorization: adv.token
         },
         data: JSON.stringify({name: adv.storyName}),
         success: function getStoryName(data) {
@@ -128,17 +126,19 @@
     adv.storyStep = {};
 
     // Send the body of the new step and its options to the server
-    adv.createStep = function createStep() {          //// Use argument and fill JSON with it
+    adv.createStep = function createStep() {          // Use argument and fill JSON with it
       $.ajax({
         type: 'POST',
         url: '/step',
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: token
+            authorization: adv.token
         },
-        data: JSON.stringify({body: adv.stepText, opt_a: adv.optionAText, opt_b: adv.optionBText}),
-        success: function getToken(data) {
+        data: JSON.stringify(
+          {body: adv.stepText, opt_a: adv.optionAText, opt_b: adv.optionBText}
+        ),
+        success: function getStepData(data) {
             adv.storyStep.id = data.id;
             adv.storyStep.body = data.body;
             adv.storyStep.opt_a = data.opt_a;
@@ -161,19 +161,25 @@
     };
 
     // Sends step edits and option assignments to the server
-    adv.editStep = function editStep() {          //// Use argument and fill JSON with it
+    adv.editStep = function editStep() {          // Use argument and fill JSON with it
       $.ajax({
         type: 'PATCH',
         url: '/update',
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: token
+            authorization: adv.token
         },
         data: JSON.stringify(
-          {body: adv.stepText, opt_a: adv.optionAText, opt_b: adv.optionBText, a_assignment: $('.new-step-option-a-next').val(), b_assignment: 3}
+          {
+            body: adv.stepText,
+            opt_a: adv.optionAText,
+            opt_b: adv.optionBText,
+            a_assignment: $('.new-step-option-a-next').val(),
+            b_assignment: $('.new-step-option-b-next').val()
+          }
         ),
-        success: function getToken(data) {
+        success: function getStepEdits(data) {
           console.log(data);
           console.log($('.new-step-option-a-next').val());
 
@@ -185,5 +191,30 @@
       });
     };
 
+    // Delete a Step from the server
+    // adv.deleteStep = function deleteStep(stepID) {
+    //   $.ajax({
+    //     type: 'DELETE',
+    //     url: '/delete',
+    //     contentType: 'application/json',
+    //     dataType: 'json',
+    //     headers: {
+    //         authorization: adv.token
+    //     },
+    //     data: JSON.stringify( {id: stepID} ),
+    //     context: this,
+    //     success: function removeStep(data) {
+    //       console.log(data);
+    //       console.log(stepID);
+    //       console.log(this);
+    //       $('li').remove();
+    //
+    //     },
+    //     error: function handleErrors(xhr) {
+    //       console.log( xhr );
+    //       // THIS NEEDS TO DO SOMETHING!
+    //     },
+    //   });
+    // };
 
 })(window.adv);
