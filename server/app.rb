@@ -54,3 +54,10 @@ get "/steps/:id" do
   steps = Adventure::Step.where(story_id: story.id)
   [200, steps.to_json]
 end
+
+patch "/step!/:id" do
+  payload = JSON.parse(request.body.read)
+  step = Adventure::Step.find(params["id"])
+  step.update(payload)
+  step.to_json
+end
