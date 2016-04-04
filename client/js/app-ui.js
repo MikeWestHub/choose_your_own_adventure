@@ -27,13 +27,18 @@
     $('.list-stories').on('click', function() {
       adv.listStories();
       console.log("list me stories please");
+      // $('#create-story').css('display', 'none');
+      // $('#story-list').css('display', 'block');
     });
 
     // Appends HTML for available stories to edit.
     adv.appendStoryList = function appendStoryList() {
       $('#display-stories')
         .append( $('<li>').text(adv.storyAndID.name)
-          .append( $('<a>').attr( {href: '#', class: 'edit-story'} ).text('Edit') )
+          .append( $('<div>')/* .attr( {action: '#edit-story'} ) */  // THIS SHOULD BE A FORM
+            .append( $('<button>').attr( {/*href: '#edit-story',*/ class: 'edit-story'} ).text('Edit') )
+          )
+
         );
     };
 
@@ -46,6 +51,8 @@
     // Displays the Create Story form after clicking on Create Story link.
     $('.create-story').on('click', function() {
       $('#login').css('display', 'none');
+      $('#edit-story').css('display', 'none');
+      $('#story-list').css('display', 'none');
       $('#create-story').css('display', 'block');
     });
 
@@ -117,25 +124,29 @@
               .append( $('<fieldset>')
                 .append( $('<h4>').text('Step Text') )
                 .append( $('<textarea>').attr( {class: 'new-step-text'} ).val(stepText) )
+                .append( $('<input>').attr( {type: 'checkbox', class: 'step-end', value: 'edit-btn'} ) )
+                .append( $('<label>').text('This is a story endpoint') )
               )
-              .append( $('<fieldset>')
-                .append( $('<div>')
-                  .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Text') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a'} ).val(optionAText) )
+              .append( $('<div>').attr( {class: 'option-options'} )
+                .append( $('<fieldset>')
+                  .append( $('<div>')
+                    .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Text') )
+                    .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a'} ).val(optionAText) )
+                  )
+                  .append( $('<div>')
+                    .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Next Step') )
+                    .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a-next'} ).val(optionAPath) )
+                  )
                 )
-                .append( $('<div>')
-                  .append( $('<label>').attr( {for: 'new-step-option-a' } ).text('Option A Next Step') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-a-next'} ).val(optionAPath) )
-                )
-              )
-              .append( $('<fieldset>')
-                .append( $('<div>')
-                  .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Text') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b'} ).val(optionBText) )
-                )
-                .append( $('<div>')
-                  .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Next Step') )
-                  .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b-next'} ).val(optionBPath) )
+                .append( $('<fieldset>')
+                  .append( $('<div>')
+                    .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Text') )
+                    .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b'} ).val(optionBText) )
+                  )
+                  .append( $('<div>')
+                    .append( $('<label>').attr( {for: 'new-step-option-b' } ).text('Option B Next Step') )
+                    .append( $('<input>').attr( {type: 'text', class: 'new-step-option-b-next'} ).val(optionBPath) )
+                  )
                 )
               )
               .append( $('<fieldset>')
@@ -145,6 +156,22 @@
             )
           );
      };
+
+     $('#edit-steps').on('click', '.step-end', function() {
+       if ( $('.step-end').is(':checked') ) {
+         console.log( $(this) );
+         $(this).closest('li').find('.option-options').hide();
+         $(this).closest('li').find('.new-step-option-a').val('');
+         $(this).closest('li').find('.new-step-option-a-next').val('');
+         $(this).closest('li').find('.new-step-option-b').val('');
+         $(this).closest('li').find('.new-step-option-b-next').val('');
+       }
+       else {
+         $(this).closest('li').find('.option-options').show();
+       }
+
+
+     });
 
      // Sets the values of the inputs to edit an existing step
     //  adv.appendStepText = function appendStepText(/* newStepText, optionAText, optionBText */) {
@@ -160,44 +187,41 @@
          if ( Number( $('.new-step-option-a-next').val() ) && Number( $('.new-step-option-b-next').val() ) ) {
            adv.editStep();
            console.log('Yay! Numbers!');
-         } else {
+         }
+         else if ( $('.step-end').is(':checked') ) {
+           adv.editStep();
+         }
+         else {
+           alert("Please enter valid numbers for both of your Option's Next Step.");
            console.log('Boo! No Numbers!');
          }
      });
 
-     var token = {token: 2248433};
      // Deleting a Step
      $('#edit-steps').on('click', '.delete-btn', function( event ) {
          event.preventDefault();
-        //  adv.deleteStep( $(this).closest('li').find('.step-id').text() );
         $.ajax({
           type: 'DELETE',
           url: '/delete',
           contentType: 'application/json',
           dataType: 'json',
           headers: {
-              authorization: token
+              authorization: adv.token
           },
           data: JSON.stringify( {id: $(this).closest('li').find('.step-id').text()} ),
           context: this,
           success: function removeStep(data) {
             console.log(data);
-            // console.log(stepID);
             console.log(this);
             $(this).closest('li').remove();
 
           },
           error: function handleErrors(xhr) {
             console.log( xhr );
+            alert('Your request was not received. Please try again.');
             // THIS NEEDS TO DO SOMETHING!
           },
         });
-        //  $(this).closest('li').remove();  // This should only happen if request is successful
      });
-
-     // Removes the HTML elements for a step
-     adv.removeStep = function removeStep() {
-       $('li');
-     };
 
 })(window.adv);

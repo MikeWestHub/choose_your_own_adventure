@@ -20,7 +20,7 @@
         },
         error: function handleErrors(xhr) {
           console.log( xhr );
-          // THIS NEEDS TO DO SOMETHING!
+          $('#login-error').css('display', 'block');
         },
       });
     };
@@ -37,11 +37,16 @@
             authorization: adv.token
         },
         success: function getStories(data) {
+          $('#display-stories').find('li').remove();
           data.forEach(function(element) {
             adv.storyAndID.id = element.id;
             adv.storyAndID.name = element.name;
             console.log(adv.storyAndID);
             adv.appendStoryList();
+            $('.story-name').text($('#new-story-name').val());
+            $('#create-story').css('display', 'none');
+            $('#edit-story').css('display', 'none');
+            $('#story-list').css('display', 'block');
             // console.log(element.id);
           });
           console.log('success');
@@ -50,6 +55,7 @@
         error: function handleErrors(xhr) {
           console.log( xhr );
           console.log('failure :(');
+          alert('Your request was not received. Please try again.');
           // console.log(status);
           // THIS NEEDS TO DO SOMETHING!
         },
@@ -69,6 +75,7 @@
             authorization: adv.token
         },
         success: function grabSteps(data) {
+          $('#edit-story').find('li').remove();
           data.forEach(function(element) {
             adv.storySteps.id = element.id;
             adv.storySteps.body = element.body;
@@ -77,6 +84,8 @@
             adv.storySteps.a_assignment = element.a_assignment;
             adv.storySteps.b_assignment = element.b_assignment;
             console.log(adv.storySteps);
+
+            $('#edit-story').css('display', 'block');
 
             adv.appendStep(
               adv.storySteps.id,
@@ -94,6 +103,7 @@
         error: function handleErrors(xhr) {
           console.log( xhr );
           console.log('failure :(');
+          alert('Your request was not received. Please try again.');
           // console.log(status);
           // THIS NEEDS TO DO SOMETHING!
         },
@@ -118,6 +128,7 @@
         },
         error: function handleErrors(xhr) {
           console.log( xhr );
+          alert('Your request was not received. Please try again.');
           // THIS NEEDS TO DO SOMETHING!
         },
       });
@@ -155,6 +166,7 @@
         },
         error: function handleErrors(xhr) {
           console.log( xhr );
+          alert('Your request was not received. Please try again.');
           // THIS NEEDS TO DO SOMETHING!
         },
       });
@@ -186,6 +198,7 @@
         },
         error: function handleErrors(xhr) {
           console.log( xhr );
+          alert('Your request was not received. Please try again.');
           // THIS NEEDS TO DO SOMETHING!
         },
       });
