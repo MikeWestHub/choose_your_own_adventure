@@ -47,7 +47,6 @@
             $('#create-story').css('display', 'none');
             $('#edit-story').css('display', 'none');
             $('#story-list').css('display', 'block');
-            // console.log(element.id);
           });
           console.log('success');
           // console.log(data);
@@ -57,7 +56,6 @@
           console.log('failure :(');
           alert('Your request was not received. Please try again.');
           // console.log(status);
-          // THIS NEEDS TO DO SOMETHING!
         },
       });
     };
@@ -65,8 +63,8 @@
     adv.storySteps = [];
 
     // Retrieve all steps for a story
-    adv.getSteps = function getSteps() {
-      // $.ajax({
+    adv.getSteps = function getSteps() {      // Had to stop using because of ajax issues
+      // $.ajax({                             // inside of a function.
       //   type: 'GET',
       //   url: '/steps-in-a-story',
       //   contentType: 'application/json',
@@ -125,7 +123,6 @@
         error: function handleErrors(xhr) {
           console.log( xhr );
           alert('Your request was not received. Please try again.');
-          // THIS NEEDS TO DO SOMETHING!
         },
       });
     };
@@ -163,13 +160,12 @@
         error: function handleErrors(xhr) {
           console.log( xhr );
           alert('Your request was not received. Please try again.');
-          // THIS NEEDS TO DO SOMETHING!
         },
       });
     };
 
     // Sends step edits and option assignments to the server
-    adv.editStep = function editStep() {          // Use argument and fill JSON with it
+    adv.editStep = function editStep() {
       $.ajax({
         type: 'PATCH',
         url: '/update',
@@ -195,35 +191,8 @@
         error: function handleErrors(xhr) {
           console.log( xhr );
           alert('Your request was not received. Please try again.');
-          // THIS NEEDS TO DO SOMETHING!
         },
       });
     };
-
-    // Delete a Step from the server
-    // adv.deleteStep = function deleteStep(stepID) {
-    //   $.ajax({
-    //     type: 'DELETE',
-    //     url: '/delete',
-    //     contentType: 'application/json',
-    //     dataType: 'json',
-    //     headers: {
-    //         authorization: adv.token
-    //     },
-    //     data: JSON.stringify( {id: stepID} ),
-    //     context: this,
-    //     success: function removeStep(data) {
-    //       console.log(data);
-    //       console.log(stepID);
-    //       console.log(this);
-    //       $('li').remove();
-    //
-    //     },
-    //     error: function handleErrors(xhr) {
-    //       console.log( xhr );
-    //       // THIS NEEDS TO DO SOMETHING!
-    //     },
-    //   });
-    // };
 
 })(window.adv);

@@ -87,14 +87,14 @@ main {
 header {
   padding: 3% 0;
   color: #fff;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P', Georgia;
   font-size: 2em;
   text-align: center;
 }
 
 /* line 25, ../sass/_main.scss */
 h2 {
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P', Georgia;
   margin-bottom: 2%;
 }
 
@@ -141,7 +141,7 @@ textarea {
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
   box-shadow: 0px 1px 3px #666666;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   color: #ffffff;
   font-size: 1.5em;
   padding: 9px 20px 10px 20px;
@@ -181,7 +181,7 @@ textarea {
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
   box-shadow: 0px 1px 3px #666666;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   color: #ffffff;
   font-size: 1.5em;
   padding: 9px 20px 10px 20px;
@@ -218,7 +218,7 @@ textarea {
 /* line 136, ../sass/_main.scss */
 #title {
   margin-top: 8%;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   font-size: 2.5em;
   color: #fff;
   line-height: 1.4em;
@@ -228,7 +228,7 @@ textarea {
 /* line 145, ../sass/_main.scss */
 #login-error {
   margin-top: 8%;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   font-size: 2em;
   color: #fff;
 }
@@ -248,7 +248,7 @@ textarea {
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
   box-shadow: 0px 1px 3px #666666;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   color: #ffffff;
   font-size: 40px;
   padding: 9px 20px 10px 20px;
@@ -317,7 +317,7 @@ textarea {
   border: 2px solid #000;
   border-radius: 5px;
   list-style: disc;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   font-size: 1em;
   line-height: 2em;
 }
@@ -342,7 +342,7 @@ textarea {
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
   box-shadow: 0px 1px 3px #666666;
-  font-family: 'Press Start 2P', Georgia, cursive;
+  font-family: 'Press Start 2P', Georgia;
   color: #ffffff;
   font-size: px;
   padding: 4px 8px 4px 8px;

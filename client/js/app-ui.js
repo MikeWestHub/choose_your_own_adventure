@@ -41,13 +41,10 @@
           )
 
         );
-        // $('.edit-story').data(adv.storyAndID.name);
-        // console.log( $('.edit-story').data() );
     };
 
     // Displays steps of a story when clicking on that story's edit link.
     $('#display-stories').on('click', '.edit-story', function() {
-      // adv.getSteps();
 
       $.ajax({
         type: 'GET',
@@ -219,14 +216,6 @@
 
 
      });
-
-     // Sets the values of the inputs to edit an existing step
-    //  adv.appendStepText = function appendStepText(/* newStepText, optionAText, optionBText */) {
-    //   $('.step-id').text(adv.storyStep.id);
-    //   // $('.new-step-text').val(adv.storyStep.body);
-    //   // $('.new-step-option-a').val(adv.storyStep.opt_a);
-    //   // $('.new-step-option-b').val(adv.storyStep.opt_b);
-    //  };
 
      // Sends updated step info to the server
      $('#edit-steps').on('submit', '.edit-story-step', function( event ) {
