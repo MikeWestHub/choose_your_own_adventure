@@ -9,7 +9,7 @@ class AppTest < Minitest::Test
 
   def auth_header
     token = SecureRandom.hex
-    session = Adventure::Session.create(token: token)
+    Adventure::Session.create(token: token)
     header("AUTHORIZATION", token)
   end
 
