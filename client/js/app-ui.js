@@ -53,7 +53,7 @@
         dataType: 'json',
         context: this,
         headers: {
-            authorization: adv.token
+            authorization: adv.token.token
         },
         success: function grabSteps(data) {
           $('#edit-story').find('li').remove();
@@ -242,7 +242,7 @@
           contentType: 'application/json',
           dataType: 'json',
           headers: {
-              authorization: adv.token
+              authorization: adv.token.token
           },
           data: JSON.stringify( {id: $(this).closest('li').find('.step-id').text()} ),
           context: this,

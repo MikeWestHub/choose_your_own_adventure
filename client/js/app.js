@@ -34,7 +34,7 @@
         url: '/stories',
         dataType: 'json',
         headers: {
-            authorization: adv.token
+            authorization: adv.token.token
         },
         success: function getStories(data) {
           $('#display-stories').find('li').remove();
@@ -112,7 +112,7 @@
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: adv.token
+            authorization: adv.token.token
         },
         data: JSON.stringify({name: adv.storyName}),
         success: function getStoryName(data) {
@@ -137,7 +137,7 @@
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: adv.token
+            authorization: adv.token.token
         },
         data: JSON.stringify(
           {body: adv.stepText, opt_a: adv.optionAText, opt_b: adv.optionBText}
@@ -172,7 +172,7 @@
         contentType: 'application/json',
         dataType: 'json',
         headers: {
-            authorization: adv.token
+            authorization: adv.token.token
         },
         data: JSON.stringify(
           {
