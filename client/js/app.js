@@ -66,48 +66,44 @@
 
     // Retrieve all steps for a story
     adv.getSteps = function getSteps() {
-      $.ajax({
-        type: 'GET',
-        url: '/steps-in-a-story',
-        contentType: 'application/json',
-        dataType: 'json',
-        headers: {
-            authorization: adv.token
-        },
-        success: function grabSteps(data) {
-          $('#edit-story').find('li').remove();
-          data.forEach(function(element) {
-            adv.storySteps.id = element.id;
-            adv.storySteps.body = element.body;
-            adv.storySteps.opt_a = element.opt_a;
-            adv.storySteps.opt_b = element.opt_b;
-            adv.storySteps.a_assignment = element.a_assignment;
-            adv.storySteps.b_assignment = element.b_assignment;
-            console.log(adv.storySteps);
-
-            $('#edit-story').css('display', 'block');
-
-            adv.appendStep(
-              adv.storySteps.id,
-              adv.storySteps.body,
-              adv.storySteps.opt_a,
-              adv.storySteps.opt_b,
-              adv.storySteps.a_assignment,
-              adv.storySteps.b_assignment
-            );
-
-          });
-          console.log('success');
-          // console.log(data);
-        },
-        error: function handleErrors(xhr) {
-          console.log( xhr );
-          console.log('failure :(');
-          alert('Your request was not received. Please try again.');
-          // console.log(status);
-          // THIS NEEDS TO DO SOMETHING!
-        },
-      });
+      // $.ajax({
+      //   type: 'GET',
+      //   url: '/steps-in-a-story',
+      //   contentType: 'application/json',
+      //   dataType: 'json',
+      //   headers: {
+      //       authorization: adv.token
+      //   },
+      //   success: function grabSteps(data) {
+      //     $('#edit-story').find('li').remove();
+      //     data.forEach(function(element) {
+      //       adv.storySteps.id = element.id;
+      //       adv.storySteps.body = element.body;
+      //       adv.storySteps.opt_a = element.opt_a;
+      //       adv.storySteps.opt_b = element.opt_b;
+      //       adv.storySteps.a_assignment = element.a_assignment;
+      //       adv.storySteps.b_assignment = element.b_assignment;
+      //       console.log(adv.storySteps);
+      //
+      //       $('#edit-story').css('display', 'block');
+      //
+      //       adv.appendStep(
+      //         adv.storySteps.id,
+      //         adv.storySteps.body,
+      //         adv.storySteps.opt_a,
+      //         adv.storySteps.opt_b,
+      //         adv.storySteps.a_assignment,
+      //         adv.storySteps.b_assignment
+      //       );
+      //
+      //     });
+      //     console.log('success');
+      //   },
+      //   error: function handleErrors(xhr) {
+      //     console.log( xhr );
+      //     alert('Your request was not received. Please try again.');
+      //   },
+      // });
     };
 
     // Send the name of the new story to the server

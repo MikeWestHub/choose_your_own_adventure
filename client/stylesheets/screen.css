@@ -281,9 +281,10 @@ textarea {
   background-color: #F8F8F8;
   border-radius: 5px;
   font-size: 1.2em;
+  text-align: center;
 }
 
-/* line 202, ../sass/_main.scss */
+/* line 203, ../sass/_main.scss */
 #edit-story {
   width: 80%;
   margin: 1% auto;
@@ -294,12 +295,12 @@ textarea {
   border-radius: 5px;
 }
 
-/* line 212, ../sass/_main.scss */
+/* line 213, ../sass/_main.scss */
 #edit-steps li {
   margin: 2% 0;
 }
 
-/* line 216, ../sass/_main.scss */
+/* line 217, ../sass/_main.scss */
 .edit-story-step {
   border: 2px solid #000;
   border-radius: 5px;
@@ -307,7 +308,7 @@ textarea {
   background-color: #EBE8E8;
 }
 
-/* line 223, ../sass/_main.scss */
+/* line 224, ../sass/_main.scss */
 #display-stories {
   width: 60%;
   margin: 1% auto;
@@ -321,12 +322,12 @@ textarea {
   line-height: 2em;
 }
 
-/* line 236, ../sass/_main.scss */
+/* line 237, ../sass/_main.scss */
 #display-stories div {
   text-align: right;
 }
 
-/* line 240, ../sass/_main.scss */
+/* line 241, ../sass/_main.scss */
 .edit-story {
   margin-left: 5%;
   background: #060538;
@@ -349,12 +350,12 @@ textarea {
   text-decoration: none;
 }
 
-/* line 262, ../sass/_main.scss */
+/* line 263, ../sass/_main.scss */
 .edit-story:focus {
   outline: none;
 }
 
-/* line 266, ../sass/_main.scss */
+/* line 267, ../sass/_main.scss */
 .clearfix {
   clear: both;
 }

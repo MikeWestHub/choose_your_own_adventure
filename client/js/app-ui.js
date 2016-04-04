@@ -35,16 +35,62 @@
     adv.appendStoryList = function appendStoryList() {
       $('#display-stories')
         .append( $('<li>').text(adv.storyAndID.name)
-          .append( $('<div>')/* .attr( {action: '#edit-story'} ) */  // THIS SHOULD BE A FORM
-            .append( $('<button>').attr( {/*href: '#edit-story',*/ class: 'edit-story'} ).text('Edit') )
+          .append( $('<div>').data( "name", adv.storyAndID.name)  // THIS SHOULD BE A FORM
+            .append( $('<button>').attr( {class: 'edit-story', value: adv.storyAndID.id} ).text('Edit')
+            )
           )
 
         );
+        // $('.edit-story').data(adv.storyAndID.name);
+        // console.log( $('.edit-story').data() );
     };
 
     // Displays steps of a story when clicking on that story's edit link.
     $('#display-stories').on('click', '.edit-story', function() {
-      adv.getSteps();
+      // adv.getSteps();
+
+      $.ajax({
+        type: 'GET',
+        url: '/steps-in-a-story', // will be adding '+ $(this).val(),' when server goes live
+        contentType: 'application/json',
+        dataType: 'json',
+        context: this,
+        headers: {
+            authorization: adv.token
+        },
+        success: function grabSteps(data) {
+          $('#edit-story').find('li').remove();
+          data.forEach(function(element) {
+            adv.storySteps.id = element.id;
+            adv.storySteps.body = element.body;
+            adv.storySteps.opt_a = element.opt_a;
+            adv.storySteps.opt_b = element.opt_b;
+            adv.storySteps.a_assignment = element.a_assignment;
+            adv.storySteps.b_assignment = element.b_assignment;
+            console.log(adv.storySteps);
+
+            $('#edit-story').css('display', 'block');
+
+
+            adv.appendStep(
+              adv.storySteps.id,
+              adv.storySteps.body,
+              adv.storySteps.opt_a,
+              adv.storySteps.opt_b,
+              adv.storySteps.a_assignment,
+              adv.storySteps.b_assignment
+            );
+
+          });
+          console.log('success');
+        },
+        error: function handleErrors(xhr) {
+          console.log( xhr );
+          alert('Your request was not received. Please try again.');
+        },
+      });
+      $('.story-name').text( $(this).closest('div').data( "name" ) );
+      // $('.story-name').text($(this).val());
       // console.log("list me stories please");
     });
 
@@ -69,6 +115,7 @@
     // Handler for submit on the Story Name field.
     $('#create-story').on('submit', function( event ) {
         event.preventDefault();
+        $('#edit-steps').find('li').remove();
         adv.createStoryName();
         // console.log(42);
     });
@@ -192,7 +239,7 @@
            adv.editStep();
          }
          else {
-           alert("Please enter valid numbers for both of your Option's Next Step.");
+           alert("Please enter valid numbers for both of your Option's Next Steps.");
            console.log('Boo! No Numbers!');
          }
      });
@@ -219,7 +266,6 @@
           error: function handleErrors(xhr) {
             console.log( xhr );
             alert('Your request was not received. Please try again.');
-            // THIS NEEDS TO DO SOMETHING!
           },
         });
      });
